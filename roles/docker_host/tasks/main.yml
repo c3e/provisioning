@@ -1,0 +1,19 @@
+- name: Install and start docker
+  block:
+    apt_key:
+      url: https://download.docker.com/linux/debian/gpg
+      state: present
+
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/debian jessie stable
+      state: present
+
+    apt:
+      name: docker-ce
+      state: present
+
+    systemd:
+      enabled: yes
+      state: started
+      daemon_reload: yes
+      name: docker-ce
