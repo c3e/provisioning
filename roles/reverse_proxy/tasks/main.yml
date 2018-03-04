@@ -1,0 +1,16 @@
+- name: Start reverse proxy
+  copy:
+    src: traefik.toml
+    dst: {{ docker_data_folder }}/traefik/traefik.toml
+
+  docker_container:
+    name: reverse_proxy
+    image: traefik
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "{{ docker_data_folder }}/traefik/traefik.toml:/etc/traefik/traefik.toml"
+      - "{{ docker_data_folder }}/traefik/acme.json:/etc/traefik/acme.json
+      - "/var/run/docker.sock:/var/run/docker.sock"

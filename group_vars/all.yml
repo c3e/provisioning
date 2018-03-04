@@ -1,5 +1,6 @@
 ---
 become_method: sudo
 ansible_ask_become_pass: yes
-docker_data_folder: /srv/docker
+docker_data_folder: /data
+docker_project_folder: /var/docker
 motd_path: files/motd.txt

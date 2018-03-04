@@ -1,0 +1,15 @@
+- name: Clone SpaceApiDaemon
+  git:
+    repo: "https://github.com/gidsi/SpaceApiDaemon.git"
+    dest: "{{ docker_project_folder }}/SpaceApiDaemon"
+    force: yes
+
+- name: Copy env
+  template:
+    src: env.j2
+    dest: "{{ docker_project_folder }}/SpaceApiDaemon/.env"
+
+- name: Start SpaceApiDaemon
+  docker_service:
+    project_src: "{{ docker_project_folder }}/SpaceApiDaemon"
+    pull: yes
