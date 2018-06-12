@@ -1,0 +1,25 @@
+---
+- name: Create project folder
+  file:
+    name: "{{ docker_project_folder }}/wiki/"
+    state: directory
+
+- name: Copy env
+  template:
+    src: env.j2
+    dest: "{{ docker_project_folder }}/wiki/.env"
+
+- name: Copy LocalSettings
+  template:
+    src: LocalSettings.j2
+    dest: "{{ docker_data_folder }}/wiki/LocalSettings.php"
+
+- name: Copy docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_project_folder }}/wiki/docker-compose.yml"
+
+- name: Start wiki
+  docker_service:
+    project_src: "{{ docker_project_folder }}/wiki"
+    pull: yes

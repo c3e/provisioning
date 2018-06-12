@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh dohms.chaospott.de
+ssh dohms.chaospott.de -p42666

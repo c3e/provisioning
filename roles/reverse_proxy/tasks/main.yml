@@ -1,16 +1,31 @@
-- name: Start reverse proxy
+- name: Create data folder
+  file:
+    name: "{{ docker_data_folder }}/traefik"
+    state: directory
+
+- name: Copy reverse proxy config
   copy:
     src: traefik.toml
-    dst: {{ docker_data_folder }}/traefik/traefik.toml
+    dest: "{{ docker_data_folder }}/traefik/traefik.toml"
 
+- name: Create a network
+  docker_network:
+    name: web
+    state: present
+
+- name: Start reverse proxy
   docker_container:
-    name: reverse_proxy
+    name: reverseproxy
     image: traefik
+    pull: true
+    restart_policy: always
+    networks:
+      - name: web
     ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
+      - "3080:80"
+      - "3443:443"
+      - "3081:8080"
     volumes:
       - "{{ docker_data_folder }}/traefik/traefik.toml:/etc/traefik/traefik.toml"
-      - "{{ docker_data_folder }}/traefik/acme.json:/etc/traefik/acme.json
+      - "{{ docker_data_folder }}/traefik/acme.json:/etc/traefik/acme.json"
       - "/var/run/docker.sock:/var/run/docker.sock"

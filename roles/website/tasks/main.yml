@@ -1,0 +1,13 @@
+- name: Start website
+  docker_container:
+    name: site
+    image: chaospott/site
+    state: started
+    pull: true
+    restart_policy: always
+    networks:
+      - name: web
+    labels: {
+      traefik.basic.frontend.rule: "Host:chaospott.de,www.chaospott.de",
+      traefik.enable: "true"
+    }

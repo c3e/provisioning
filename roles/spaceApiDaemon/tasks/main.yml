@@ -1,13 +1,13 @@
-- name: Clone SpaceApiDaemon
-  git:
-    repo: "https://github.com/gidsi/SpaceApiDaemon.git"
-    dest: "{{ docker_project_folder }}/SpaceApiDaemon"
-    force: yes
-
+---
 - name: Copy env
   template:
     src: env.j2
     dest: "{{ docker_project_folder }}/SpaceApiDaemon/.env"
+
+- name: Copy docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_project_folder }}/SpaceApiDaemon/docker-compose.yml"
 
 - name: Start SpaceApiDaemon
   docker_service:

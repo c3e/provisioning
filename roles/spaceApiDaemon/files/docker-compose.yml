@@ -1,0 +1,30 @@
+version: "3.0"
+services:
+  database:
+    image: mongo:latest
+    volumes:
+      - ${DATA_FOLDER}/db:/data/db
+  daemon:
+    image: spaceapi/daemon
+    depends_on:
+      - database
+    expose:
+      - 8080
+    volumes:
+      - ${DATA_FOLDER}/config:/etc/spaceapidaemon
+  swagger:
+    image: swaggerapi/swagger-ui
+    depends_on:
+      - daemon
+    expose:
+      - 8080
+    environment:
+      - API_URL=${SWAGGERURL}
+  reverseProxy:
+    image: spaceapi/daemonproxy
+    depends_on:
+      - daemon
+      - swagger
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${SPACEAPIURL}"

@@ -12,16 +12,20 @@ defaultEntryPoints = ["https","http"]
   address = ":443"
   [entryPoints.https.tls]
 
+[api]
+
 [retry]
 
 [docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "chaospott.de"
 watch = true
 exposedByDefault = false
 
-[acme]
-email = "noc@chaospott.de"
-storage = "/etc/traefik/acme.json"
-entryPoint = "https"
-onHostRule = true
-[acme.httpChallenge]
-entryPoint = "http"
+# [acme]
+# email = "noc@chaospott.de"
+# storage = "/etc/traefik/acme.json"
+# entryPoint = "https"
+# onHostRule = true
+# [acme.httpChallenge]
+# entryPoint = "http"

@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-/usr/bin/env ansible-playbook --ask-become -i inventory playbooks/provisioning.yml "$@"
+/usr/bin/env ansible-playbook --ask-become -i inventory playbooks/provisioning.yml --vault-password-file vaultpass "$@"
