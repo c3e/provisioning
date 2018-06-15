@@ -7,3 +7,6 @@
 #    - { role: spaceApiDaemon }
     - { role: website }
     - { role: wiki }
+    - { role: documents }
+    - { role: mailman }
+    - { role: doorstatus }

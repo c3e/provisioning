@@ -1,0 +1,16 @@
+- name: Start doorstatus daemon
+  docker_container:
+    name: doorstatus
+    image: chaospott/doorstatusdaemon
+    state: started
+    pull: true
+    restart_policy: always
+    networks:
+      - name: web
+    env: {
+      API_URL: "https://newstatus.chaospott.de"
+    }
+    labels: {
+      traefik.basic.frontend.rule: "Host:doorstatus.chaospott.de",
+      traefik.enable: "true"
+    }

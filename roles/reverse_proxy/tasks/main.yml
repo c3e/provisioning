@@ -8,6 +8,11 @@
     src: traefik.toml
     dest: "{{ docker_data_folder }}/traefik/traefik.toml"
 
+- name: Make sure acme.json exists
+  file:
+    name: "{{ docker_data_folder }}/traefik/acme.json"
+    state: touch
+
 - name: Create a network
   docker_network:
     name: web
@@ -22,9 +27,9 @@
     networks:
       - name: web
     ports:
-      - "3080:80"
-      - "3443:443"
-      - "3081:8080"
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
     volumes:
       - "{{ docker_data_folder }}/traefik/traefik.toml:/etc/traefik/traefik.toml"
       - "{{ docker_data_folder }}/traefik/acme.json:/etc/traefik/acme.json"

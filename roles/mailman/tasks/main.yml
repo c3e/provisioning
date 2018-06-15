@@ -1,0 +1,19 @@
+- name: Start documents
+  docker_container:
+    name: mailman
+    image: mailman2
+    state: started
+    restart_policy: always
+    networks:
+      - name: web
+    ports:
+      - "25:25"
+    volumes:
+      - "/data/mail_certs:/certs"
+      - "/data/mailman:/var/lib/mailman"
+      - "/data/mailman/postgrey:/etc/postgrey"
+    labels: {
+      traefik.basic.frontend.rule: "Host:lists.chaospott.de",
+      traefik.port: "80",
+      traefik.enable: "true"
+    }

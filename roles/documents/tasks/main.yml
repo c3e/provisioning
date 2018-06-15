@@ -1,0 +1,13 @@
+- name: Start documents
+  docker_container:
+    name: documents
+    image: chaospott/documents
+    state: started
+    pull: true
+    restart_policy: always
+    networks:
+      - name: web
+    labels: {
+      traefik.basic.frontend.rule: "Host:documents.chaospott.de",
+      traefik.enable: "true"
+    }

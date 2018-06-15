@@ -22,10 +22,10 @@ domain = "chaospott.de"
 watch = true
 exposedByDefault = false
 
-# [acme]
-# email = "noc@chaospott.de"
-# storage = "/etc/traefik/acme.json"
-# entryPoint = "https"
-# onHostRule = true
-# [acme.httpChallenge]
-# entryPoint = "http"
+[acme]
+email = "noc@chaospott.de"
+storage = "/etc/traefik/acme.json"
+entryPoint = "https"
+onHostRule = true
+[acme.httpChallenge]
+entryPoint = "http"
