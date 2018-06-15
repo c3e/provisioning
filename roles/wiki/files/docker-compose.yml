@@ -12,8 +12,8 @@ services:
     depends_on:
       - database
     volumes:
-      - ${DATAFOLDER}/images:/usr/share/webapps/mediawiki/images
-      - ${DATAFOLDER}/LocalSettings.php:/usr/share/webapps/mediawiki/LocalSettings.php
+      - ${DATA_FOLDER}/images:/usr/share/webapps/mediawiki/images
+      - ${DATA_FOLDER}/LocalSettings.php:/usr/share/webapps/mediawiki/LocalSettings.php
   database:
     image: mariadb
     restart: always
@@ -23,7 +23,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     volumes:
-      - ${DATAFOLDER}/db:/var/lib/mysql
+      - ${DATA_FOLDER}/db:/var/lib/mysql
 
 networks:
   web:
