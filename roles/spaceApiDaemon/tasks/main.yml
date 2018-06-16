@@ -9,6 +9,11 @@
     src: docker-compose.yml
     dest: "{{ docker_project_folder }}/SpaceApiDaemon/docker-compose.yml"
 
+- name: Copy config
+  template:
+    src: config.j2
+    dest: "{{ docker_data_folder }}/spaceapidaemon/config/config.yaml"
+
 - name: Start SpaceApiDaemon
   docker_service:
     project_src: "{{ docker_project_folder }}/SpaceApiDaemon"

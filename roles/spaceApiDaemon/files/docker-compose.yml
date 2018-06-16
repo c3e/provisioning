@@ -22,9 +22,17 @@ services:
       - API_URL=${SWAGGERURL}
   reverseProxy:
     image: spaceapi/daemonproxy
+    networks:
+      - web
+      - default
     depends_on:
       - daemon
       - swagger
     labels:
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:${SPACEAPIURL}"
+      - "traefik.frontend.rule=Host:${SPACEAPIURL},status.chaospott.de"
+      - "traefik.docker.network=web"
+
+networks:
+  web:
+    external: true

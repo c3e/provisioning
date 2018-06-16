@@ -4,7 +4,7 @@
   roles:
     - { role: base, tags: ['base'] }
     - { role: motd, tags: ['motd'] }
-#    - { role: spaceApiDaemon }
+    - { role: spaceApiDaemon }
     - { role: website }
     - { role: wiki }
     - { role: documents }

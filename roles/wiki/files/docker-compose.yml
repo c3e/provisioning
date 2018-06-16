@@ -6,6 +6,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.basic.frontend.rule=Host:wiki.chaospott.de"
+      - "traefik.docker.network=web"
     networks:
       - web
       - default
