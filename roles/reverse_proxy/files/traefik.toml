@@ -29,3 +29,6 @@ entryPoint = "https"
 onHostRule = true
 [acme.httpChallenge]
 entryPoint = "http"
+
+[metrics]
+  [metrics.prometheus]
