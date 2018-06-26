@@ -10,3 +10,5 @@
     - { role: documents }
     - { role: mailman }
     - { role: doorstatus }
+    - { role: prometheus }
+    - { role: grafana }

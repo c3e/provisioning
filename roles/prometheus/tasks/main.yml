@@ -1,0 +1,30 @@
+---
+- name: Create project folder
+  file:
+    name: "{{ docker_project_folder }}/prometheus/"
+    state: directory
+
+- name: Create data folder
+  file:
+    name: "{{ docker_data_folder }}/prometheus/"
+    state: directory
+
+- name: Copy env
+  template:
+    src: env.j2
+    dest: "{{ docker_project_folder }}/prometheus/.env"
+
+- name: Copy config file
+  copy:
+    src: prometheus.yml
+    dest: "{{ docker_project_folder }}/prometheus/prometheus.yml"
+
+- name: Copy docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_project_folder }}/prometheus/docker-compose.yml"
+
+- name: Start prometheus
+  docker_service:
+    project_src: "{{ docker_project_folder }}/prometheus"
+    pull: yes

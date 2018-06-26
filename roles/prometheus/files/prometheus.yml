@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus.dohms.chaospott.de']
+  - job_name: 'dohms traefik'
+    static_configs:
+      - targets: ['traefik.dohms.chaospott.de']

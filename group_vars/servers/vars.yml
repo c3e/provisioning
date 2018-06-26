@@ -3,3 +3,5 @@ wiki_upgrade_key: "{{ vault_wiki_upgrade_key }}"
 wiki_db_user: "{{ vault_wiki_db_user }}"
 wiki_db_password: "{{ vault_wiki_db_password }}"
 spaceApiDaemon_signing_key: "{{ vault_spaceApiDaemon_signing_key }}"
+
+grafana_admin_password: "{{ vault_grafana_admin_password }}"

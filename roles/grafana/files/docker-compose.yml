@@ -1,0 +1,21 @@
+version: "3"
+services:
+  grafana:
+    image: grafana/grafana
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:grafana.dohms.chaospott.de"
+      - "traefik.docker.network=web"
+    environment:
+      - GF_SERVER_ROOT_URL=https://grafana.dohms.chaospott.de
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    volumes:
+      - ${DATA_FOLDER}:/var/lib/grafana
+    networks:
+      - web
+      - default
+
+networks:
+  web:
+    external: true

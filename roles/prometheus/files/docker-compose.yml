@@ -1,0 +1,22 @@
+version: "3"
+services:
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:prometheus.dohms.chaospott.de"
+      - "traefik.docker.network=web"
+    networks:
+      - web
+      - default
+    volumes:
+      - ${CONFIG_FILE}:/prometheus.yml
+      - ${DATA_FOLDER}/data:/prometheus
+    command:
+      - "--config.file=/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+
+networks:
+  web:
+    external: true
