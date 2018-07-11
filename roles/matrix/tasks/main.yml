@@ -1,0 +1,25 @@
+---
+- name: Create project folder
+  file:
+    name: "{{ docker_project_folder }}/matrix"
+    state: directory
+
+- name: Create data folder
+  file:
+    name: "{{ docker_data_folder }}/matrix"
+    state: directory
+
+- name: Copy env
+  template:
+    src: env.j2
+    dest: "{{ docker_project_folder }}/matrix/.env"
+
+- name: Copy docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_project_folder }}/matrix/docker-compose.yml"
+
+- name: Start matrix
+  docker_service:
+    project_src: "{{ docker_project_folder }}/matrix"
+    pull: yes

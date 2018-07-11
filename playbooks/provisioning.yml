@@ -11,4 +11,5 @@
     - { role: mailman }
     - { role: doorstatus }
     - { role: prometheus }
+    - { role: matrix }
     - { role: grafana }

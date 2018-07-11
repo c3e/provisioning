@@ -5,3 +5,9 @@ wiki_db_password: "{{ vault_wiki_db_password }}"
 spaceApiDaemon_signing_key: "{{ vault_spaceApiDaemon_signing_key }}"
 
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
+
+matrix_db_password: "{{ vault_matrix_db_password }}"
+matrix_recaptcha_public_key: "{{ vault_matrix_recaptcha_public_key }}"
+matrix_recaptcha_private_key: "{{ vault_matrix_recaptcha_private_key }}"
+matrix_registration_shared_secret: "{{ vault_matrix_registration_shared_secret }}"
+matrix_macaroon_secret_key: "{{ vault_matrix_macaroon_secret_key }}"

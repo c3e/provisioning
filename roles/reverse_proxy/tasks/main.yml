@@ -21,7 +21,7 @@
 - name: Start reverse proxy
   docker_container:
     name: reverseproxy
-    image: traefik
+    image: traefik:1.6.4-alpine
     pull: true
     restart_policy: always
     networks:
