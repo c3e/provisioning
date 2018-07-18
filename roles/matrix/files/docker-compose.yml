@@ -20,10 +20,16 @@ services:
       - ${DATA_FOLDER}/media:/data/media
     depends_on:
       - db
+    ports:
+      - 8448:8448/tcp
+    networks:
+      - web
+      - default
     labels:
       - traefik.enable=true
       - traefik.frontend.rule=Host:matrix.chaospott.de
-      - traefik.port=8448
+      - traefik.port=8008
+      - traefik.docker.network=web
 
   db:
     image: postgres:10-alpine
@@ -32,3 +38,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - ${DATA_FOLDER}/schemas:/var/lib/postgresql/data
+
+networks:
+  web:
+    external: true
