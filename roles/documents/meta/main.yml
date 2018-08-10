@@ -2,3 +2,4 @@
 dependencies:
   - { role: docker }
   - { role: reverse_proxy }
+  - { role: watchtower }
