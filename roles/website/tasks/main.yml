@@ -7,9 +7,10 @@
     restart_policy: always
     networks:
       - name: web
-    labels:
-      - "traefik.basic.frontend.rule=Host:chaospott.de,www.chaospott.de"
-      - "traefik.frontend.headers.STSSeconds=315360000"
-      - "traefik.frontend.headers.STSIncludeSubdomains=true"
-      - "traefik.frontend.headers.STSPreload=true"
-      - "traefik.enable=true"
+    labels: {
+        traefik.basic.frontend.rule: "Host:chaospott.de,www.chaospott.de",
+        traefik.frontend.headers.STSSeconds: "315360000",
+        traefik.frontend.headers.STSIncludeSubdomains: "true",
+        traefik.frontend.headers.STSPreload: "true",
+        traefik.enable: "true"
+      }
