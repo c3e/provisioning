@@ -21,7 +21,7 @@
 
 - name: Make sure acme.json exists
   file:
-e    name: "{{ docker_data_folder }}/traefik/acme.json"
+    name: "{{ docker_data_folder }}/traefik/acme.json"
     state: touch
 
 - name: Create a network
