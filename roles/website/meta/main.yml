@@ -1,5 +1,5 @@
 ---
 dependencies:
   - { role: docker }
-  - { role: reverse_proxy }
+  - { role: traefik }
   - { role: watchtower }

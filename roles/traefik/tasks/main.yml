@@ -1,0 +1,36 @@
+---
+- name: Create project folder
+  file:
+    name: "{{ docker_project_folder }}/traefik"
+    state: directory
+
+- name: Create data folder
+  file:
+    name: "{{ docker_data_folder }}/traefik"
+    state: directory
+
+- name: Copy docker-compose
+  copy:
+    src: docker-compose.yml
+    dest: "{{ docker_project_folder }}/traefik/docker-compose.yml"
+
+- name: Copy reverse proxy config
+  copy:
+    src: traefik.toml
+    dest: "{{ docker_data_folder }}/traefik/traefik.toml"
+
+- name: Make sure acme.json exists
+  file:
+e    name: "{{ docker_data_folder }}/traefik/acme.json"
+    state: touch
+
+- name: Create a network
+  docker_network:
+    name: web
+    state: present
+
+
+- name: Start traefik
+  docker_service:
+    project_src: "{{ docker_project_folder }}/traefik"
+    pull: yes
