@@ -14,3 +14,4 @@
     - { role: prometheus }
     - { role: matrix }
     - { role: grafana }
+    - { role: reverse_proxy }
